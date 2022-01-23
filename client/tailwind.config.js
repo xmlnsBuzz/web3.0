@@ -1,47 +1,35 @@
 module.exports = {
-  content: [
-    './src/**/*.{html,js,jsx,ts}',
-    './pages/**/*.{html,js},jsx',
-    './components/**/*.{html,js,jsx}',
-    './index.html'
-  ],
+  purge: [ "./src/**/*.{js,jsx,ts,tsx}", "./public/index.html" ],
+  mode: "jit",
+  darkMode: false, // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      display: [ "Open Sans", "sans-serif" ],
+      body: [ "Open Sans", "sans-serif" ],
+    },
     extend: {
       screens: {
-        sm: '480px',
-        md: '768px',
-        lg: '976px',
-        xl: '1440px'
+        mf: "990px",
       },
-      colors: {
-        blue: '#1fb6ff',
-        purple: '#7e5bef',
-        pink: '#ff49db',
-        orange: '#ff7849',
-        green: '#13ce66',
-        yellow: '#ffc82c',
-        'gray-dark': '#273444',
-        gray: '#8492a6',
-        'gray-light': '#d3dce6'
-      },
-      fontFamily: {
-        sans: ['Graphik', 'sans-serif'],
-        serif: ['Merriweather', 'serif']
-      },
-      extend: {
-        spacing: {
-          128: '32rem',
-          144: '36rem'
+      keyframes: {
+        "slide-in": {
+          "0%": {
+            "-webkit-transform": "translateX(120%)",
+            transform: "translateX(120%)",
+          },
+          "100%": {
+            "-webkit-transform": "translateX(0%)",
+            transform: "translateX(0%)",
+          },
         },
-        borderRadius: {
-          '4xl': '2rem'
-        }
-      }
-    }
+      },
+      animation: {
+        "slide-in": "slide-in 0.5s ease-out",
+      },
+    },
   },
-  plugins: [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('autoprefixer')
-  ]
+  variants: {
+    extend: {},
+  },
+  plugins: [ require( "@tailwindcss/forms" ) ],
 };
